@@ -2,26 +2,23 @@
 const agent = require('superagent-promise')(require('superagent'), Promise)
 const formatter = require('../formatter')
 
-export default async function getInfoFilm(res) {
-  console.log('GET INFO FILM')
+export default async function findEvents(res) {
+  console.log('FIND EVENTS')
 
   const replies = []
   const quickReplies = []
-  const film = res.getMemory('film')
+  const location = res.getMemory('location')
   console.log('======================================')
-  console.log(film)
+  console.log(location)
   console.log('======================================')
-  replies.push(formatter.formatMsg(`Looking for information regarding ${film.value}`))
-  const response = await agent('GET', `https://swapi.co/api/films/?search=${film.value}`)
-  const filmAnswer = response.body
-  if (filmAnswer.results.length) {
-    const title = filmAnswer.results[0].title
-    const episodeId = filmAnswer.results[0].episode_id
-    const director = filmAnswer.results[0].director
-    const producer = filmAnswer.results[0].producer
-    const releaseDate = filmAnswer.results[0].release_date
-    const info = `${film.value} :\n- Title: ${title}\n- Episode id: ${episodeId}\n- Director: ${director}\n- Produce: ${producer}\n- Release date: ${releaseDate}`
-    replies.push(formatter.formatMsg(info))
+  if (location) {
+    replies.push(formatter.formatMsg(`Looking for meetups near ${location.formatted}`))
+    const response = await agent('GET', `https://api.meetup.com/find/events?key=${process.ENV.MEETUP_API_KEY}&lat=${location.lat}&long=${location.lng}`)
+    const meetups = response.body
+    console.log('======================================')
+    console.log(meetups)
+    console.log('======================================')
+    /*replies.push(formatter.formatMsg(info))
     if (filmAnswer.results[0].characters.length) {
       const responseCharacter = await agent('GET', filmAnswer.results[0].characters[0])
       const characterAnswer = responseCharacter.body
@@ -45,6 +42,7 @@ export default async function getInfoFilm(res) {
     replies.push(formatter.formatQuickReplies(quickReplies, film))
   } else {
     replies.push(formatter.formatMsg(`Sorry I couldn't find any information regarding ${film.value}`))
+  }*/
   }
   return replies
 }

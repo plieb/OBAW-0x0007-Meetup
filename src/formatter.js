@@ -13,13 +13,11 @@ exports.formatQuickReplies = (quickRp, res) => {
       value: elem.value,
     })
   })
-  if (res) {
-    return {
-      type: 'quickReplies',
-      content: {
-        title: `More information regarding ${res.value}`,
-        buttons: elements,
-      },
-    }
+  return {
+    type: 'quickReplies',
+    content: {
+      title: `More information regarding ${res.value}`,
+      buttons: elements,
+    },
   }
 }

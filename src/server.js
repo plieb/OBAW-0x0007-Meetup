@@ -21,5 +21,5 @@ app.post('/webhook', (req, res) => myBot.listen(req, res))
 myBot.onTextMessage(handleMessage)
 
 app.listen(app.get('port'), () => {
-  console.log(`Star Wars bot running on port ${app.get('port')}`)
+  console.log(`Meetup bot running on port ${app.get('port')}`)
 })

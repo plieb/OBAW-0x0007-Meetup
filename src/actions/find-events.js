@@ -30,7 +30,7 @@ export default async function findEvents(res) {
         cardsReplies.push({
           name: m[i].name,
           city: location.formatted,
-          picture: picture.organizer.group_photo.photo_link,
+          picture: picture.group_photo.photo_link,
         })
       })
       replies.push(formatter.formatCardsReplies(cardsReplies))

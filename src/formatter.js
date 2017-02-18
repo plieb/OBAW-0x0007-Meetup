@@ -21,3 +21,25 @@ exports.formatQuickReplies = (quickRp, res) => {
     },
   }
 }
+
+exports.formatCardsReplies = (cards) => {
+  const elements = []
+  cards.forEach((c) => {
+    elements.push({
+      title: c.name,
+      subtitle: c.city,
+      imageUrl: c.picture,
+      buttons: [
+        {
+          type: 'postback',
+          title: 'Register',
+          value: 'Register to the event',
+        },
+      ],
+    })
+  })
+  return {
+    type: 'carouselle',
+    content: elements,
+  }
+}

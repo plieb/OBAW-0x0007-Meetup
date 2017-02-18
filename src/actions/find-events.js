@@ -20,6 +20,9 @@ export default async function findEvents(res) {
       const meetupSliced = meetups.slice(index, index + 8)
       const promises = meetupSliced.map(p => agent('GET', `https://api.meetup.com/${p.group.urlname}?key=${process.env.MEETUP_API_KEY}`))
       Promise.all(promises).then((results) => {
+        console.log('======================================')
+        console.log(results)
+        console.log('======================================')
         results.forEach((responsePicture, i) => {
           const picture = responsePicture.body
           const m = meetupSliced[i]

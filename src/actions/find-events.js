@@ -33,6 +33,9 @@ export default async function findEvents(res) {
           picture: picture.organizer.photo.photo_link,
         })
       })
+      console.log('======================================')
+      console.log(cardsReplies)
+      console.log('======================================')
       replies.push(formatter.formatCardsReplies(cardsReplies))
     } else {
       replies.push(formatter.formatMsg(`Couldn't fint any meetups near ${location.formatted}`))

@@ -8,6 +8,7 @@ export default async function findEvents(res) {
 
   const replies = []
   const cardsReplies = []
+  const pictures = []
   const location = res.getMemory('location')
   if (location) {
     replies.push(formatter.formatMsg(`Looking for meetups near ${location.formatted}`))
@@ -15,38 +16,27 @@ export default async function findEvents(res) {
     const meetups = response.body
     if (meetups.length) {
       const index = Math.floor((Math.random() * (meetups.length - 10)) + 1)
-      const meetupSliced = meetups.slice(index, index + 8)
-      async.each(meetupSliced, async (m) => {
-        const responsePicture = await agent('GET', `https://api.meetup.com/${m.group.urlname}?key=${process.env.MEETUP_API_KEY}`)
-        const picture = responsePicture.body
-        if (m.venue) {
-          cardsReplies.push({
-            name: m.name,
-            city: m.venue.city,
-            picture: picture.organizer.photo.photo_link,
-          })
-        } else {
-          cardsReplies.push({
-            name: m.name,
-            city: location.formatted,
-            picture: picture.organizer.photo.photo_link,
-          })
-        }
-      }, (err) => {
-        console.log('======================================')
-        console.log('HELLOOOOOOOO')
-        console.log('======================================')
-        if (err) {
-          console.log(err)
-        }
+      const m = meetups.slice(index, index + 8)
+      pictures[0] = await agent('GET', `https://api.meetup.com/${m[0].group.urlname}?key=${process.env.MEETUP_API_KEY}`)
+      pictures[1] = await agent('GET', `https://api.meetup.com/${m[1].group.urlname}?key=${process.env.MEETUP_API_KEY}`)
+      pictures[2] = await agent('GET', `https://api.meetup.com/${m[2].group.urlname}?key=${process.env.MEETUP_API_KEY}`)
+      pictures[3] = await agent('GET', `https://api.meetup.com/${m[3].group.urlname}?key=${process.env.MEETUP_API_KEY}`)
+      pictures[4] = await agent('GET', `https://api.meetup.com/${m[4].group.urlname}?key=${process.env.MEETUP_API_KEY}`)
+      pictures[5] = await agent('GET', `https://api.meetup.com/${m[5].group.urlname}?key=${process.env.MEETUP_API_KEY}`)
+      pictures[6] = await agent('GET', `https://api.meetup.com/${m[6].group.urlname}?key=${process.env.MEETUP_API_KEY}`)
+      pictures[7] = await agent('GET', `https://api.meetup.com/${m[7].group.urlname}?key=${process.env.MEETUP_API_KEY}`)
+      pictures.forEach((p, i) => {
+        const picture = p.body
+        cardsReplies.push({
+          name: m[i].name,
+          city: location.formatted,
+          picture: picture.organizer.photo.photo_link,
+        })
       })
+      replies.push(formatter.formatCardsReplies(cardsReplies))
     } else {
       replies.push(formatter.formatMsg(res.reply()))
     }
   }
-  console.log('======================================')
-  console.log(replies)
-  console.log('======================================')
-  replies.push(formatter.formatCardsReplies(cardsReplies))
   return replies
 }

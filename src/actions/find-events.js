@@ -21,7 +21,7 @@ export default async function findEvents(res) {
       console.log('======================================')
       console.log(meetupSliced)
       console.log('======================================')
-      meetupSliced.forEach(async (m) => {
+      await meetupSliced.forEach(async (m) => {
         console.log('======================================')
         console.log(m.group)
         console.log(m.group.urlname)

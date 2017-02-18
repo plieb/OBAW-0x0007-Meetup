@@ -22,13 +22,22 @@ export default async function findEvents(res) {
         console.log('======================================')
         console.log(picture.name)
         console.log(m.name)
+        console.log(m)
         console.log(m.venue)
         console.log('======================================')
-        cardsReplies.push({
-          name: m.name,
-          city: m.venue.city,
-          picture: picture.organizer.photo.photo_link,
-        })
+        if (m.venue) {
+          cardsReplies.push({
+            name: m.name,
+            city: m.venue.city,
+            picture: picture.organizer.photo.photo_link,
+          })
+        } else {
+          cardsReplies.push({
+            name: m.name,
+            city: location.formatted,
+            picture: picture.organizer.photo.photo_link,
+          })
+        }
       }, (err) => {
         if (err) {
           console.log(err)

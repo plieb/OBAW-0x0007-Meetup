@@ -20,7 +20,7 @@ export default async function findEvents(res) {
         const responsePicture = await agent('GET', `https://api.meetup.com/${m.group.urlname}?key=${process.env.MEETUP_API_KEY}`)
         const picture = responsePicture.body
         console.log('======================================')
-        console.log(responsePicture)
+        console.log(picture.name)
         console.log('======================================')
         cardsReplies.push({
           name: m.name,

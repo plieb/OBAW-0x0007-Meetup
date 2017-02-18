@@ -19,12 +19,6 @@ export default async function findEvents(res) {
       async.each(meetupSliced, async (m) => {
         const responsePicture = await agent('GET', `https://api.meetup.com/${m.group.urlname}?key=${process.env.MEETUP_API_KEY}`)
         const picture = responsePicture.body
-        console.log('======================================')
-        console.log(picture.name)
-        console.log(m.name)
-        console.log(m)
-        console.log(m.venue)
-        console.log('======================================')
         if (m.venue) {
           cardsReplies.push({
             name: m.name,
@@ -42,6 +36,9 @@ export default async function findEvents(res) {
         if (err) {
           console.log(err)
         } else {
+          console.log('======================================')
+          console.log(replies)
+          console.log('======================================')
           replies.push(formatter.formatCardsReplies(cardsReplies))
         }
       })

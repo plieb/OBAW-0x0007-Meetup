@@ -30,7 +30,7 @@ export default async function findEvents(res) {
         const picture = responsePicture.body
         cardsReplies.push({
           name: m.name,
-          city: m.venue.adress_1,
+          city: m.venue.address_1,
           picture: picture.organizer.photo.photo_link,
         })
       })

@@ -23,9 +23,10 @@ export default async function findEvents(res) {
       console.log('======================================')
       meetupSliced.forEach(async (m) => {
         console.log('======================================')
-        console.log(m)
+        console.log(m.group)
+        console.log(m.group.urlname)
         console.log('======================================')
-        const responsePicture = await agent('GET', `https://api.meetup.com/${m.group.urlname}?key=${process.env.MEETUP_API_KEY}&lat=${location.lat}&long=${location.lng}`)
+        const responsePicture = await agent('GET', `https://api.meetup.com/${m.group.urlname}?key=${process.env.MEETUP_API_KEY}`)
         const picture = responsePicture.body
         cardsReplies.push({
           name: m.name,

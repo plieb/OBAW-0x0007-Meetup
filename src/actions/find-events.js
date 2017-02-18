@@ -27,6 +27,10 @@ export default async function findEvents(res) {
       pictures[7] = await agent('GET', `https://api.meetup.com/${m[7].group.urlname}?key=${process.env.MEETUP_API_KEY}`)
       pictures.forEach((p, i) => {
         const picture = p.body
+        console.log('======================================')
+        console.log(picture)
+        console.log(picture.group_photo)
+        console.log('======================================')
         cardsReplies.push({
           name: m[i].name,
           city: location.formatted,

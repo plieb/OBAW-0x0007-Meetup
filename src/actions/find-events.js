@@ -12,7 +12,7 @@ export default async function findEvents(res) {
   const location = res.getMemory('location')
   if (location) {
     replies.push(formatter.formatMsg(`Looking for meetups near ${location.formatted}`))
-    const response = await agent('GET', `https://api.meetup.com/find/events?key=${process.env.MEETUP_API_KEY}&lat=${location.lat}&long=${location.lng}`)
+    const response = await agent('GET', `https://api.meetup.com/recommended/events?key=${process.env.MEETUP_API_KEY}&lat=${location.lat}&long=${location.lng}`)
     const meetups = response.body
     if (meetups.length) {
       const index = Math.floor((Math.random() * (meetups.length - 10)) + 1)

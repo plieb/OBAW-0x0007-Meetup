@@ -1,7 +1,6 @@
 /* module imports */
 const agent = require('superagent-promise')(require('superagent'), Promise)
 const formatter = require('../formatter')
-const async = require('async')
 
 export default async function findEvents(res) {
   console.log('FIND EVENTS')
@@ -31,11 +30,19 @@ export default async function findEvents(res) {
         console.log(picture)
         console.log(picture.group_photo)
         console.log('======================================')
-        cardsReplies.push({
-          name: m[i].name,
-          city: location.formatted,
-          picture: picture.group_photo.photo_link,
-        })
+        if (picture.group_photo) {
+          cardsReplies.push({
+            name: m[i].name,
+            city: location.formatted,
+            picture: picture.group_photo.photo_link,
+          })
+        } else {
+          cardsReplies.push({
+            name: m[i].name,
+            city: location.formatted,
+            picture: picture.organizer.photo.photo_link,
+          })
+        }
       })
       replies.push(formatter.formatCardsReplies(cardsReplies))
     } else {

@@ -35,16 +35,12 @@ export default async function findEvents(res) {
       }, (err) => {
         if (err) {
           console.log(err)
-        } else {
-          console.log('======================================')
-          console.log(replies)
-          console.log('======================================')
-          replies.push(formatter.formatCardsReplies(cardsReplies))
         }
       })
     } else {
       replies.push(formatter.formatMsg(res.reply()))
     }
   }
+  replies.push(formatter.formatCardsReplies(cardsReplies))
   return replies
 }

@@ -24,6 +24,10 @@ export default function findEvents(res) {
           results.forEach((responsePicture, i) => {
             const picture = responsePicture.body
             const m = meetupSliced[i]
+            console.log('***************************************')
+            console.log(m)
+            console.log(picture.organizer.photo.photo_link)
+            console.log('***************************************')
             cardsReplies.push({
               name: m.name,
               city: m.venue.city,

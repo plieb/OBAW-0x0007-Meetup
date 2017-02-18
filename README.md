@@ -2,6 +2,7 @@
 ![Meetup + Recast.AI][logo]
 
 This bot is part of the #[OBAW](https://github.com/plieb/OBAW) project - Week 0x0007 - Meetup
+
 Medium publication project page #[OBAW](https://medium.com/the-obaw-project)
 
 # Meetup Bot for Facebook Messenger using Recast.AI

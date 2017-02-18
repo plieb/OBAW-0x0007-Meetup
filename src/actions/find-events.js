@@ -33,6 +33,9 @@ export default async function findEvents(res) {
           })
         }
       }, (err) => {
+        console.log('======================================')
+        console.log('HELLOOOOOOOO')
+        console.log('======================================')
         if (err) {
           console.log(err)
         }
@@ -41,6 +44,9 @@ export default async function findEvents(res) {
       replies.push(formatter.formatMsg(res.reply()))
     }
   }
+  console.log('======================================')
+  console.log(replies)
+  console.log('======================================')
   replies.push(formatter.formatCardsReplies(cardsReplies))
   return replies
 }

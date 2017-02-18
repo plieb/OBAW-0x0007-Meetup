@@ -9,9 +9,6 @@ export default function findEvents(res) {
     const replies = []
     const cardsReplies = []
     const location = res.getMemory('location')
-    console.log('======================================')
-    console.log(location)
-    console.log('======================================')
     if (location) {
       replies.push(formatter.formatMsg(`Looking for meetups near ${location.formatted}`))
       const response = await agent('GET', `https://api.meetup.com/find/events?key=${process.env.MEETUP_API_KEY}&lat=${location.lat}&long=${location.lng}`)
@@ -38,6 +35,10 @@ export default function findEvents(res) {
           console.log('======================================')
           replies.push(formatter.formatCardsReplies(cardsReplies))
           resolve(replies)
+        }).catch((e) => {
+          console.log('======================================')
+          console.log(e)
+          console.log('======================================')
         })
       } else {
         replies.push(formatter.formatMsg(`Couldn't fint any meetups near ${location.formatted}`))

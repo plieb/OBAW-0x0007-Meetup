@@ -21,6 +21,8 @@ export default async function findEvents(res) {
         const picture = responsePicture.body
         console.log('======================================')
         console.log(picture.name)
+        console.log(m.name)
+        console.log(m.venue)
         console.log('======================================')
         cardsReplies.push({
           name: m.name,

@@ -16,11 +16,11 @@ export default async function findEvents(res) {
     if (meetups.length) {
       const index = Math.floor((Math.random() * (meetups.length - 10)) + 1)
       const meetupSliced = meetups.slice(index, index + 8)
-      async.each(meetupSliced, (m) => {
+      async.each(meetupSliced, async (m) => {
         console.log('======================================')
-        console.log(m)
+        console.log(m.group.urlname)
         console.log('======================================')
-        const responsePicture = agent('GET', `https://api.meetup.com/${m.group.urlname}?key=${process.env.MEETUP_API_KEY}`)
+        const responsePicture = await agent('GET', `https://api.meetup.com/${m.group.urlname}?key=${process.env.MEETUP_API_KEY}`)
         const picture = responsePicture.body
         console.log('======================================')
         console.log(responsePicture)

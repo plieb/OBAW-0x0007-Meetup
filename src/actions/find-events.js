@@ -18,32 +18,17 @@ export default async function findEvents(res) {
     if (meetups.length) {
       const index = Math.floor((Math.random() * (meetups.length - 10)) + 1)
       const meetupSliced = meetups.slice(index, index + 8)
-      console.log('======================================')
-      console.log(meetupSliced)
-      console.log('======================================')
-      await meetupSliced.forEach(async (m) => {
-        console.log('======================================')
-        console.log(m.group)
-        console.log(m.group.urlname)
-        console.log(m.venue)
-        console.log(m.venue.city)
-        console.log(m.venue.address_1)
-        console.log('======================================')
-        const responsePicture = await agent('GET', `https://api.meetup.com/${m.group.urlname}?key=${process.env.MEETUP_API_KEY}`)
-        const picture = responsePicture.body
-        console.log('======================================')
-        console.log(m.name)
-        console.log(m.venue.city)
-        console.log(picture.organizer.photo.photo_link)
-        console.log('======================================')
-        cardsReplies.push({
-          name: m.name,
-          city: m.venue.city,
-          picture: picture.organizer.photo.photo_link,
+      const promises = meetupSliced.map(p => agent('GET', `https://api.meetup.com/${p.group.urlname}?key=${process.env.MEETUP_API_KEY}`))
+      Promise.all(promises).then((results) => {
+        results.forEach((responsePicture, i) => {
+          const picture = responsePicture.body
+          const m = meetupSliced[i]
+          cardsReplies.push({
+            name: m.name,
+            city: m.venue.city,
+            picture: picture.organizer.photo.photo_link,
+          })
         })
-        console.log('======================================')
-        console.log(cardsReplies)
-        console.log('======================================')
       })
       console.log('======================================')
       console.log(cardsReplies)

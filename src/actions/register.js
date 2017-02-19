@@ -8,13 +8,13 @@ export default async function register(res, payload) {
   const replies = []
   if (payload.rsvp === 'yes') {
     replies.push(formatter.formatMsg('You are now register to the event!'))
-    const res1 = await agent('POST', `https://api.meetup.com/${payload.groupurl}/events/${payload.id}/rspvs?key=${process.env.MEETUP_API_KEY}&response=yes`)
+    const res1 = await agent.post(`https://api.meetup.com/${payload.groupurl}/events/${payload.id}/rspvs?key=${process.env.MEETUP_API_KEY}&response=yes`)
     console.log('======================================')
     console.log(res1.body)
     console.log('======================================')
   } else {
     replies.push(formatter.formatMsg('You are now unsubscribed to the event'))
-    const res2 = await agent('POST', `https://api.meetup.com/${payload.groupurl}/events/${payload.id}/rspvs?key=${process.env.MEETUP_API_KEY}&response=no`)
+    const res2 = await agent.post(`https://api.meetup.com/${payload.groupurl}/events/${payload.id}/rspvs?key=${process.env.MEETUP_API_KEY}&response=no`)
     console.log('======================================')
     console.log(res2.body)
     console.log('======================================')

@@ -9,6 +9,9 @@ export default async function findEvents(res) {
   const cardsReplies = []
   const pictures = []
   const location = res.getMemory('location')
+  console.log('======================================')
+  console.log(location)
+  console.log('======================================')
   if (location) {
     replies.push(formatter.formatMsg(`Looking for meetups near ${location.formatted}`))
     const response = await agent('GET', `https://api.meetup.com/recommended/events?key=${process.env.MEETUP_API_KEY}&lat=${location.lat}&long=${location.lng}`)
@@ -26,10 +29,6 @@ export default async function findEvents(res) {
       pictures[7] = await agent('GET', `https://api.meetup.com/${m[7].group.urlname}?key=${process.env.MEETUP_API_KEY}`)
       pictures.forEach((p, i) => {
         const picture = p.body
-        console.log('======================================')
-        console.log(picture)
-        console.log(picture.group_photo)
-        console.log('======================================')
         if (picture.group_photo) {
           cardsReplies.push({
             name: m[i].name,

@@ -1,5 +1,6 @@
 const actions = {
   'find-events': require('./find-events'),
+  'get-upcoming': require('./get-upcoming'),
 }
 
 export default async function handleAction(res, message) {

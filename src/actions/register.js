@@ -9,13 +9,13 @@ export default async function register(res, payload) {
   if (payload.rsvp === 'yes') {
     replies.push(formatter.formatMsg('You are now register to the event!'))
     await agent
-      .post(`https://api.meetup.com/${payload.groupurl}/events/${payload.id}/rspvs`)
+      .post(`https://api.meetup.com/${payload.groupurl}/events/${payload.id}/rsvps`)
       .query({ key: process.env.MEETUP_API_KEY })
       .query({ response: 'yes' })
   } else {
     replies.push(formatter.formatMsg('You are now unsubscribed to the event'))
     await agent
-      .post(`https://api.meetup.com/${payload.groupurl}/events/${payload.id}/rspvs`)
+      .post(`https://api.meetup.com/${payload.groupurl}/events/${payload.id}/rsvps`)
       .query({ key: process.env.MEETUP_API_KEY })
       .query({ response: 'no' })
   }

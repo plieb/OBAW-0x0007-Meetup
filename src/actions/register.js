@@ -13,7 +13,7 @@ export default async function register(res, payload) {
       .query({ key: process.env.MEETUP_API_KEY })
       .query({ response: 'yes' })
   } else {
-    replies.push(formatter.formatMsg('You are now unsubscribed to the event'))
+    replies.push(formatter.formatMsg('You are now unsubscribed from the event'))
     await agent
       .post(`https://api.meetup.com/${payload.groupurl}/events/${payload.id}/rsvps`)
       .query({ key: process.env.MEETUP_API_KEY })

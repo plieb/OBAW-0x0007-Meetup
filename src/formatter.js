@@ -31,9 +31,9 @@ exports.formatCardsReplies = (cards) => {
       imageUrl: c.picture,
       buttons: [
         {
-          type: 'postback',
-          title: 'Register',
-          value: 'Register to the event',
+          type: 'web_url',
+          title: 'More Information',
+          value: c.link,
         },
       ],
     })

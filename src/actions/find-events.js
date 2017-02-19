@@ -33,12 +33,14 @@ export default async function findEvents(res) {
           cardsReplies.push({
             name: m[i].name,
             city: location.formatted,
+            link: m[i].link,
             picture: picture.group_photo.photo_link,
           })
         } else {
           cardsReplies.push({
             name: m[i].name,
             city: location.formatted,
+            link: m[i].link,
             picture: picture.organizer.photo.photo_link,
           })
         }

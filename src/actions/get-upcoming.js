@@ -34,12 +34,14 @@ export default async function getUpcoming(res) {
         cardsReplies.push({
           name: m[i].name,
           city: null,
+          link: m[i].link,
           picture: picture.group_photo.photo_link,
         })
       } else {
         cardsReplies.push({
           name: m[i].name,
           city: null,
+          link: m[i].link,
           picture: picture.organizer.photo.photo_link,
         })
       }

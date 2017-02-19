@@ -35,6 +35,16 @@ exports.formatCardsReplies = (cards) => {
           title: 'More Information',
           value: c.link,
         },
+        {
+          type: 'postback',
+          title: c.register.rsvp === 'yes' ? 'RSVP' : 'Unregister',
+          value: JSON.stringify({
+            text: c.register.rsvp === 'yes' ? 'I want to RSPV for this meetup' : 'I want to unsubscribe',
+            groupurl: c.register.groupurl,
+            id: c.register.id,
+            rsvp: c.register.rsvp,
+          }),
+        },
       ],
     })
   })

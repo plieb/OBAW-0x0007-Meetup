@@ -9,12 +9,17 @@ export async function handleMessage(message) {
   try {
     console.log('MESSAGE RECEIVED', message)
 
-    const text = message.content.attachment.content
+    let text = message.content.attachment.content
+    let payload = ''
     let replies = []
     const { senderId } = message
+    if (message.content.attachment.type === 'payload') {
+      payload = JSON.parse(message.content.attachment.content)
+      text = payload.text
+    }
     const res = await recastClient.textConverse(text, { conversationToken: senderId })
     console.log('RECAST ANSWER', res)
-    replies = await handleAction(res)
+    replies = await handleAction(res, payload)
     replies.forEach(reply => message.addReply(reply))
 
     await message.reply()

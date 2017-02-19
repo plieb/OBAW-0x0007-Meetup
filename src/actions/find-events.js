@@ -38,7 +38,7 @@ export default async function findEvents(res) {
             register: {
               groupurl: m[i].group.urlname,
               id: m[i].id,
-              rspv: 'yes',
+              rsvp: 'yes',
             },
           })
         } else {
@@ -50,7 +50,7 @@ export default async function findEvents(res) {
             register: {
               groupurl: m[i].group.urlname,
               id: m[i].id,
-              rspv: 'yes',
+              rsvp: 'yes',
             },
           })
         }

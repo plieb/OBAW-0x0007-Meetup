@@ -39,7 +39,7 @@ export default async function getUpcoming(res) {
           register: {
             groupurl: m[i].group.urlname,
             id: m[i].id,
-            rspv: 'no',
+            rsvp: 'no',
           },
         })
       } else {
@@ -51,7 +51,7 @@ export default async function getUpcoming(res) {
           register: {
             groupurl: m[i].group.urlname,
             id: m[i].id,
-            rspv: 'no',
+            rsvp: 'no',
           },
         })
       }

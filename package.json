@@ -1,38 +1,38 @@
 {
-  "name": "obaw-meetup",
+  "name": "obaw-github",
   "version": "1.0.0",
-  "description": "OBAW project - Meetup bot",
-  "main": "index.js",
+  "description": "A bot built with Recast.AI",
+  "main": "server.js",
   "scripts": {
-    "start": "node ./node_modules/babel-cli/bin/babel-node.js src/server.js",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "lint": "eslint ./src/*"
+    "start": "nodemon --exec babel-node -- src/server.js",
+    "prod": "node lib/server.js",
+    "lint": "eslint src/*",
+    "build": "babel src -d lib"
   },
-  "author": "Pierre-Edouard Lieb <pe@recast.ai> (https://github.com/plieb/)",
+  "author": "Recast",
   "license": "ISC",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:plieb/OBAW-0x0008-Github.git"
+  },
   "dependencies": {
-    "babel-cli": "^6.11.4",
-    "babel-plugin-transform-runtime": "^6.22.0",
-    "babel-preset-es2015": "^6.9.0",
-    "babel-preset-stage-0": "^6.5.0",
-    "babel-register": "^6.11.5",
-    "body-parser": "^1.15.0",
-    "express": "^4.13.4",
-    "recastai": "^2.3.0",
-    "recastai-botconnector": "^1.0.1",
-    "superagent": "^3.3.1",
+    "babel-polyfill": "^6.22.0",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "recastai": "^3.1.1",
+		"superagent": "^3.3.1",
     "superagent-promise": "^1.1.0"
   },
   "devDependencies": {
-    "babel-cli": "6.18.0",
+    "babel-plugin-transform-runtime": "^6.22.0",
+    "babel-cli": "^6.11.4",
     "babel-eslint": "^6.1.2",
-    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-es2015": "^6.22.0",
+    "babel-preset-stage-0": "^6.22.0",
     "babel-register": "^6.11.5",
-    "babel-runtime": "^6.18.0",
+    "eslint": "^3.2.0",
     "eslint-config-airbnb-base": "^2.0.0",
     "eslint-plugin-import": "^1.6.1",
-    "babel-preset-stage-0": "^6.5.0",
-    "eslint": "^2.9.0",
     "nodemon": "^1.11.0"
   },
   "babel": {
@@ -47,7 +47,7 @@
   "eslintConfig": {
     "extends": "airbnb-base",
     "rules": {
-      "no-console": 0,
+      "no-console":0,
       "semi": [
         2,
         "never"

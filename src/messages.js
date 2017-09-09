@@ -1,23 +1,24 @@
 /* module improts */
-import { Client } from 'recastai'
 import handleAction from './actions'
+import { request } from 'recastai'
 
-const recastClient = new Client(process.env.RE_BOT_TOKEN)
+const req = new request(process.env.REQUEST_TOKEN, process.env.LANGUAGE)
 
-export async function handleMessage(message) {
+export async function replyMessage(message) {
   console.log('\n**********************************************************')
   try {
     console.log('MESSAGE RECEIVED', message)
 
-    let text = message.content.attachment.content
+    let text = message.content
+    const { senderId } = message
+
     let payload = ''
     let replies = []
-    const { senderId } = message
-    if (message.content.attachment.type === 'payload') {
+    if (message.type === 'payload') {
       payload = JSON.parse(message.content.attachment.content)
       text = payload.text
     }
-    const res = await recastClient.textConverse(text, { conversationToken: senderId })
+    const res = await req.converseText(text, { conversationToken: senderId })
     console.log('RECAST ANSWER', res)
     replies = await handleAction(res, payload)
     replies.forEach(reply => message.addReply(reply))

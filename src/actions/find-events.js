@@ -41,12 +41,24 @@ export default async function findEvents(res) {
               rsvp: 'yes',
             },
           })
-        } else {
+        } else if (picture.organizer.photo.photo_link) {
           cardsReplies.push({
             name: m[i].name,
             city: location.formatted,
             link: m[i].link,
             picture: picture.organizer.photo.photo_link,
+            register: {
+              groupurl: m[i].group.urlname,
+              id: m[i].id,
+              rsvp: 'yes',
+            },
+          })
+        } else {
+          cardsReplies.push({
+            name: m[i].name,
+            city: location.formatted,
+            link: m[i].link,
+            picture: 'https://secure.meetupstatic.com/s/img/286374644891845767035/logo/meetup-logo-script-1200x630.png',
             register: {
               groupurl: m[i].group.urlname,
               id: m[i].id,

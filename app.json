@@ -2,22 +2,12 @@
   "name": "Meetup bot with Recast",
   "description": "Meetup bot in Messenger",
   "env": {
-    "BC_USER_SLUG": {
-      "description": "Recast bot connector user slug",
-      "value":"",
-      "required":false
+    "LANGUAGE": {
+      "description": "Recast bot language",
+      "value":"en",
+      "required":true
     },
-    "BC_BOT_ID": {
-      "description": "Recast bot connector bot id",
-      "value":"",
-      "required":false
-    },
-    "BC_USER_TOKEN": {
-      "description": "Recast bot connector user token",
-      "value":"",
-      "required":false
-    },
-    "RE_BOT_TOKEN": {
+    "REQUEST_TOKEN": {
       "description": "Recast bot token",
       "value":"",
       "required":false

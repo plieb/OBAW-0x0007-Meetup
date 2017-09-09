@@ -9,7 +9,7 @@ Medium publication Meetup project #[OBAW Meetup](https://medium.com/the-obaw-pro
 
 # Meetup Bot for Facebook Messenger using Recast.AI
 
-A [Meetup](https://www.meetup.com/)-powered bot using [Recast.AI](https://recast.ai) NLP and [Bot Connector](https://botconnector.recast.ai)
+A [Meetup](https://www.meetup.com/)-powered bot using [Recast.AI](https://recast.ai) NLP
 
 Follow the instructions below to create your own instance of the bot:
 
@@ -22,28 +22,22 @@ Follow the instructions below to create your own instance of the bot:
 
 1. Fill in the config variables as described.
 
-    - For **BC_USER_SLUG** blank for now (filled at step 2)
-    - For **BC_BOT_ID** blank for now (filled at step 2)
-    - For **BC_USER_TOKEN** blank for now (filled at step 2)
-    - For **RE_BOT_TOKEN** blank for now (filled at step 3)
+    - For **LANGUAGE** put 'en'
+    - For **REQUEST_TOKEN** blank for now (filled at step 2)
     - For **MEETUP_API_KEY** blank for now (filled at step 4)
 
-## Step 2: Create your bot on Bot Connector
+## Step 2: Get your Recast.AI bot
 
-1. Make sure you are logged in to your [Bot Connector account](https://botconnector.recast.ai/)
-1. Click the button **New Bot** and define the bot as follows
-
-    - Bot Name: Meetup Bot
-    - Bot URL: enter your Heroku URL + **/webhook** (MY_HEROKU_URL.heroku.com/webhook)
-
-1. In **Settings** find your `slug`, `token` and `bot ID`. Copy paste those values in the **Config Variables** section of your Heroku app to `BC_USER_SLUG`, `BC_USER_TOKEN` and `BC_BOT_ID`
-1. Get back to your Bot Connector account and add a Messenger channel. Give it a name and follow step 1 to 4 in order to get your **Secret Key** & **Page Token**
-
-## Step 3: Get your Recast.AI bot
-
-1. Make sure you are logged in to your [Recast.AI account](https://recast.ai/)
+1. Make sure youhttps://github.com/plieb/OBAW-0x0007-Meetup are logged in to your [Recast.AI account](https://recast.ai/)
 1. Follow this link [Meetup Bot](https://recast.ai/pe/obaw-0x0007-meetup/learn) and fork the bot to your account
-1. Copy paste your `bot request access token` in the **Config Variables** section of your Heroku app to `RE_BOT_TOKEN`
+1. Copy paste your `bot request access token` in the **Config Variables** section of your Heroku app to `REQUEST_TOKEN`
+
+## Step 3: Connect your bot to Messenger
+
+1. Go to your **RUN** tab
+1. Click the **Bot Connector** tab and follow instructions to add a Messenger channel
+1. Once it's done at the top set your **Current bot webhook** to :
+    - Heroku URL + **/webhook** (MY_HEROKU_URL.heroku.com/webhook)
 
 ## Step 4: Get your Meetup API Key
 

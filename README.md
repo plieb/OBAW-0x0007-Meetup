@@ -47,7 +47,7 @@ Follow the instructions below to create your own instance of the bot:
 
 ## Author
 
-PE Lieb [@pedward_lieb](https://twitter.com/pedward_lieb)
+PE Lieb [@liebpe](https://twitter.com/liebpe)
 
 You can follow us on Twitter at [@recastai](https://twitter.com/recastai) for updates and releases.
 
